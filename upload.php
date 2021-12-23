@@ -12,24 +12,14 @@
     	<main role="main" class="container" style="padding:60px 15px 0">
       	<div>
         	<!-- ここから「本文」-->
-					
-					<h1>おしらせ</h1>
-          
-          <?php 
-            if($fp){
-              $title = fgets($fp);
-
-              if($title){
-                echo '<p><a href = "info.php">'.$title.'<a></p>';
-              }else{
-                echo '<p>お知らせはありません</p>';
-              }
-
-            }else{
-              echo '<p>お知らせはありません</p>';
-            }
-          
-          ?>
+					<h1>画像アップロード</h1>
+          <form action="upload.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <lavel>アップロードファイル</lavel>
+              <input type="file" name="image" class="form-control-file">
+            </div>
+            <input type="submit" value="アップロード" class="btn btn-primary">
+          </form>
 
 	        <!-- 本文ここまで -->
       	</div>

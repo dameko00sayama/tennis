@@ -1,4 +1,16 @@
-<?php $fp = fopen("info.txt","r"); ?>
+<?php 
+  $fp = fopen("info.txt","r"); 
+  $line = array();
+  $body='';
+
+  if($fp){
+    while(!feof($fp)){
+      $line[] = fgets($fp);
+    }
+    fclose($fp);
+  }
+?>
+
 <!doctype html>
 <html lang="ja" >
     <head>
@@ -12,25 +24,24 @@
     	<main role="main" class="container" style="padding:60px 15px 0">
       	<div>
         	<!-- ここから「本文」-->
-					
-					<h1>おしらせ</h1>
-          
+					<br>
           <?php 
-            if($fp){
-              $title = fgets($fp);
-
-              if($title){
-                echo '<p><a href = "info.php">'.$title.'<a></p>';
-              }else{
-                echo '<p>お知らせはありません</p>';
+            if(count($line) > 0){
+              for($i=0; $i<count($line); $i++){
+                if($i===0){
+                  echo'<h2>'.$line[0].'</h2>';
+                }else{
+                  $body .=$line[$i].'<br>'; //-- 文字列結合が「.」だから、文字列は+＝じゃなく.=になる
+                }
               }
-
             }else{
-              echo '<p>お知らせはありません</p>';
+                $body='お知らせはありません';
             }
-          
-          ?>
+            
+            echo '<p>'.$body.'</p>';
 
+          ?>
+          
 	        <!-- 本文ここまで -->
       	</div>
 			</main>
