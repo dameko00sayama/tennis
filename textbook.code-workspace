@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "tennis",
+			"path": "."
+		},
+		{
+			"name": "lesson",
+			"path": "..\\lesson"
+		},
+		{
+			"path": "..\\post"
+		}
+	],
+	"settings": {}
+}
