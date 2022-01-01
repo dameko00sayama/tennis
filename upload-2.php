@@ -2,9 +2,29 @@
   $msg = null;
   $alert = null;
 
-  if(isset($_FILES['image'] )&& is_uploaded_file($_FILES['image']['tmp_name'])){
+  if(isset($_FILES['image'] )&& is_uploaded_file($_FILES
+  ['image']['tmp_name'])){
     $old_name = $_FILES['image']['tmp_name'];
-    $new_name = $_FILES['image']['tmp_name'];
+
+    $new_name = date("YmdHis");
+    $new_name .= mt_rand();
+    $size = getimagesize($_FILES['image']['tmp_name']);
+    switch($size[2]){
+      case IMAGETYPE_JPEG:
+        $new_name .= '.jpg';
+        break;
+      case IMAGETYPE_GIF:
+        $new_name .= '.gif';
+        break;
+      case IMAGETYPE_PNG:
+        $new_name .= '.png';
+        break;
+      default:
+        header('location:upload.php');
+        exit();
+    }
+    
+    $_FILES['image']['tmp_name'];
 
     if(move_uploaded_file($old_name,'album/'.$new_name)){
       $msg = 'アップロード完了';
@@ -32,7 +52,8 @@
 					<h1>画像アップロード</h1>
           <?php 
             if($msg){
-              echo '<div class="alert alert-'.$alert.'" dole="alert">'.$msg.'</div>';
+              echo '<div class="alert alert-'.$alert.'" role=
+              "alert">'.$msg.'</div>';
             }
           ?>
           <form action="upload.php" method="post" enctype="multipart/form-data">
