@@ -42,7 +42,8 @@
                         $page=1;
                     }
                 }
-
+                
+                //画像表示
                 foreach($images[$page-1] as $img){
                     echo'<div class="col-3">';
                     echo'   <div class="card">';
@@ -52,13 +53,15 @@
                     echo'</div>';
                 }
                 echo'</div>';
-
+                
+                //ページ数のリンク表示
                 echo '<nav><ul class="pagination">';
                 for($i=1; $i<=count($images); $i++){
                     echo '<li class="page-item"><a class="page-link" href=
-                    "album.php?page='.$i.'</a></li>';
+                    "album.php?page='.$i.'">'.$i.'</a></li>';
                 }
                 echo '<ul></nav>';
+
             }else{
                 echo '<div class="alert alert-dark" role="alert">画像はまだありません</div>';
             }
