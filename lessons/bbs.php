@@ -89,6 +89,7 @@
               <div class="card-footer">
                 <?php echo $row['name'] ?>
                 (<?php echo $row['date'] ?>)
+                  
               </div>
               
             </div>
